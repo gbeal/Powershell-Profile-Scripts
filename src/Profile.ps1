@@ -1,4 +1,7 @@
-. $HOME\OneDrive\Documents\PowerShell\aws-aliases.ps1
-. $HOME\OneDrive\Documents\PowerShell\azure-cli-aliases.ps1
-. $HOME\OneDrive\Documents\PowerShell\backblaze-b2-aliases.ps1
-. $HOME\OneDrive\Documents\PowerShell\node-aliases.ps1
+$docs=[Environment]::GetFolderPath("MyDocuments")
+
+. $docs\PowerShell\aws-aliases.ps1
+. $docs\PowerShell\azure-cli-aliases.ps1
+. $docs\PowerShell\backblaze-b2-aliases.ps1
+. $docs\PowerShell\node-aliases.ps1
+. $docs\PowerShell\python-aliases.ps1
