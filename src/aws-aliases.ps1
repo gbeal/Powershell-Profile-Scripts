@@ -5,7 +5,8 @@ function docker-aws {
     )
 
     process {
-        docker run --rm -it -v ~/.aws:/root/.aws amazon/aws-cli $commands
+        $cmd = "docker run --rm -it -v ~/.aws:/root/.aws amazon/aws-cli $commands"
+        invoke-expression $cmd
     }
 }
 

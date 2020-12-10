@@ -1,21 +1,23 @@
 function Docker-Node {
     param (
-        [string]
+        [string[]]
         $parameters
     )
 
     process {
-        docker run --rm node $parameters
+        $cmd = "docker run --rm node $parameters"
+        Invoke-Expression $cmd
     }
 }
 
 function Docker-npm {
     param (
-        [string]$parameters
+        [string[]]$parameters
     )
 
     process {
-        docker run --rm node npm $parameters
+        $cmd = "docker run --rm node npm $parameters"
+        Invoke-Expression $cmd
     }
 }
 
@@ -23,11 +25,12 @@ function Docker-npm {
 
 function Docker-npx {
     param (
-        [string]$parameters
+        [string[]]$parameters
     )
 
     process {
-        docker run --rm node npx $parameters
+        $cmd = "docker run --rm node npx $parameters"
+        Invoke-Expression $cmd
     }
 }
 
@@ -35,3 +38,5 @@ function Docker-npx {
 Set-Alias -Name node -Value Docker-Node
 Set-Alias -Name npm -Value Docker-npm
 Set-Alias -Name npx -Value Docker-npx
+
+npm adduser -h
