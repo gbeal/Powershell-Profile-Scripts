@@ -5,7 +5,7 @@ function docker-python {
     )
 
     process {
-        $cmd = "docker run -it --rm -w /root python python $commands"
+        $cmd = "docker run --rm -it -v ${PWD}:/work -w /work python python $commands"
         invoke-expression $cmd
     }
 }
