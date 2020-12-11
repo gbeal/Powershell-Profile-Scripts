@@ -1,3 +1,15 @@
+function docker-python-base {
+    param (
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string]$commands
+    )
+
+    process {
+        $cmd = "docker run --rm -it -w /work --mount type=bind,source='$PWD',target=/work python $commands"
+        invoke-expression $cmd
+    }
+}
+
 function docker-python {
     param (
         [Parameter(ValueFromRemainingArguments = $true)]
@@ -5,7 +17,7 @@ function docker-python {
     )
 
     process {
-        $cmd = "docker run --rm -it -v ${PWD}:/work -w /work python python $commands"
+        $cmd = "docker-python-base python $commands"
         invoke-expression $cmd
     }
 }
@@ -17,10 +29,10 @@ function docker-pip {
     )
 
     process {
-        $cmd = "docker run --rm python pip $commands"
+        $cmd = "docker-python-base pip $commands"
         invoke-expression $cmd
     }
 }
 
-set-alias -Name python -Value "docker-python"
-set-alias -Name pip -Value "docker-pip"
+set-alias -Name python -Value docker-python
+set-alias -Name pip -Value docker-pip

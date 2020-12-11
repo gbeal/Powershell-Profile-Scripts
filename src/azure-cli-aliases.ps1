@@ -5,7 +5,7 @@ function docker-azure-cli {
     )
 
     process {
-        $cmd = "docker run --rm -v ~/.Azure:/root/.Azure mcr.microsoft.com/azure-cli az $commands"
+        $cmd = "docker run --rm --mount type=bind,source='$HOME/.azure',target=/root/.azure mcr.microsoft.com/azure-cli az $commands"
         invoke-expression $cmd
     }
 }
